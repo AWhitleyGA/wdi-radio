@@ -2,6 +2,7 @@
   angular
     .module('wdiRadio')
     .directive('songPlayer', [
+      'Song',
       songPlayer
     ])
 
@@ -18,7 +19,6 @@
           $element.find('audio')[0].pause()
         }
         $element.find('audio').bind('ended', function () {
-          console.log('end function')
           let randomIndex = Math.floor(Math.random() * $scope.$parent.vm.songs.length)
           let randomSong = $scope.$parent.vm.songs[randomIndex]
           $scope.$parent.vm.selectSong(randomSong)

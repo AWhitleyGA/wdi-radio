@@ -5,45 +5,41 @@
     .controller('SongsIndex', [
       'Song',
       '$sce',
+      '$scope',
       SongsIndex
     ])
     .controller('SongsShow', [
+      'Song',
       '$stateParams',
       '$sce',
-      'Song',
+      '$scope',
       SongsShow
     ])
     .controller('SongsNew', [
-      '$state',
       'Song',
       'Album',
       'Artist',
+      '$state',
       SongsNew
     ])
     .controller('SongsEdit', [
+      'Song',
       '$stateParams',
       '$state',
-      'Song',
       SongsEdit
     ])
 
-  function SongsIndex (Song, $sce) {
+  function SongsIndex (Song, $sce, $scope) {
     this.songs = Song.query()
-    this.selectSong = function (song) {
-      this.selectedSong = Object.assign({}, song)
-      this.selectedSong.preview_url = $sce.trustAsResourceUrl(this.selectedSong.preview_url)
-      this.selectedSong.album.image_url = this.selectedSong.album.image_url.replace('100x100', `200x200`)
-    }
+    this.selectSong = $scope.$parent.vm.selectSong.bind($scope.$parent.vm)
   }
 
-  function SongsShow($stateParams, $sce, Song) {
-    this.song = Song.get({ id: $stateParams.id }, (song) => {
-      song.preview_url = $sce.trustAsResourceUrl(song.preview_url)
-      return song
-    })
+  function SongsShow(Song, $stateParams, $sce, $scope) {
+    this.song = Song.get({ id: $stateParams.id })
+    this.selectSong = $scope.$parent.vm.selectSong.bind($scope.$parent.vm)
   }
 
-  function SongsNew($state, Song, Album, Artist) {
+  function SongsNew(Song, Album, Artist, $state) {
     this.song = new Song()
     this.albums = Album.query()
     this.artists = Artist.query()
@@ -67,7 +63,7 @@
     }
   }
 
-  function SongsEdit($stateParams, $state, Song) {
+  function SongsEdit(Song, $stateParams, $state) {
     this.song = Song.get({ id: $stateParams.id })
     this.update = function () {
       this.song.$update({ id: this.song.id }).then((res) => {

@@ -13,8 +13,9 @@
     <script src="js/services/artist.service.js"></script>
     <script src="js/directives/player.directive.js"></script>
     <script src="js/controllers/songs.controller.js"></script>
+    <script src="js/controllers/home.controller.js"></script>
   </head>
-  <body ng-app="wdiRadio">
+  <body ng-app="wdiRadio" ng-controller="HomeController as vm" ng-style="{'padding-bottom': vm.selectedSong ? '200px' : '0px'}">
     <nav>
       <h1>WDIRadio</h1>
       <div>
@@ -23,5 +24,6 @@
     </nav>
     <main ui-view>
     </main>
+    <song-player song="vm.selectedSong" ng-show="vm.selectedSong"></song-player>
   </body>
 </html>
