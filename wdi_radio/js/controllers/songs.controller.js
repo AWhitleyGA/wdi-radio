@@ -10,6 +10,7 @@
     ])
     .controller('SongsShow', [
       'Song',
+      'Album',
       '$stateParams',
       '$sce',
       '$scope',
@@ -34,9 +35,15 @@
     this.selectSong = $scope.$parent.vm.selectSong.bind($scope.$parent.vm)
   }
 
-  function SongsShow(Song, $stateParams, $sce, $scope) {
-    this.song = Song.get({ id: $stateParams.id })
+  function SongsShow(Song, Album, $stateParams, $sce, $scope) {
+    this.song = Song.get({ id: $stateParams.id }, (song) => {
+      song.album = Album.get({ id: song.album.id }, (album) => {
+        album.songs = album.songs.filter((s) => s.id != song.id)
+      })
+      return song
+    })
     this.selectSong = $scope.$parent.vm.selectSong.bind($scope.$parent.vm)
+    this.currentSong = $scope.$parent.vm.selectedSong
   }
 
   function SongsNew(Song, Album, Artist, $state) {

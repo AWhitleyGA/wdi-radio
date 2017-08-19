@@ -10,6 +10,10 @@ nav {
   color: white;
 }
 
+main {
+  padding: 20px;
+}
+
 nav > div {
   height: 100%;
   display: flex;
@@ -33,9 +37,6 @@ nav a:hover {
   background: rgba(255, 255, 255, 0.2);
 }
 
-.song-gallery {
-  padding: 20px;
-}
 
 .player {
   width: 100vw;
@@ -87,4 +88,19 @@ nav a:hover {
   width: 30px;
   padding: 10px;
   cursor: pointer;
+}
+
+.song-show {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.album-list {
+  display: flex;
+  width: 600px;
+}
+
+.album-list > div {
+  padding: 0 20px;
 }

@@ -1,14 +1,28 @@
-<h2>
-  <button ng-click="vm.selectSong(vm.song)">
-    &#9654;
-  </button>
-  {{ vm.song.name }}
-</h2>
-<p><a ui-sref="songsEdit({ id: vm.song.id })">Edit Song</a></p>
-<h3>Artist</h3>
-<p>{{ vm.song.artist.name }}</p>
-<h3>Album</h3>
-<div>
-  <p>{{ vm.song.album.name }}</p>
-  <img ng-src="{{ vm.song.album.image_url }}" alt="{{ vm.song.album.name }}">
+<div class="song-show">
+  <div>
+    <h2>
+      <button ng-click="vm.selectSong(vm.song)">
+        &#9654;
+      </button>
+      {{ vm.song.name }}
+    </h2>
+
+    <p><a ui-sref="songsEdit({ id: vm.song.id })">Edit Song</a></p>
+    <h3>Artist</h3>
+    <p>{{ vm.song.artist.name }}</p>
+  </div>
+  <div>
+    <h3>{{ vm.song.album.name }}</h3>
+    <div class="album-list">
+      <img ng-src="{{ vm.song.album.image_url.replace('100x100', '300x300') }}" alt="{{ vm.song.album.name }}">
+      <div>
+        <p ng-repeat="song in vm.song.album.songs">
+          <button ng-click="vm.selectSong(song)">
+            &#9654;
+          </button>
+          <a ui-sref="songsShow({ id: song.id })">{{ song.name }}</a>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
