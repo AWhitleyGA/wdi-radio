@@ -9,7 +9,7 @@
 
   function songPlayer () {
     return {
-      templateUrl: 'js/directives/player.html',
+      templateUrl: 'app/directives/player.html',
       scope: {
         song: '='
       },
