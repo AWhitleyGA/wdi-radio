@@ -99,8 +99,15 @@ nav a:hover {
 .album-list {
   display: flex;
   width: 600px;
+  padding: 20px 0;
 }
 
 .album-list > div {
   padding: 0 20px;
+}
+
+.album-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }

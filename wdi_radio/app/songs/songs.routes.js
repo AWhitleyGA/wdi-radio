@@ -5,10 +5,10 @@
     .config([
       '$stateProvider',
       '$urlRouterProvider',
-      Router
+      songsRoutes
     ])
 
-  function Router ($stateProvider, $urlRouterProvider) {
+  function songsRoutes ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('songsIndex', {
         url: '/songs',

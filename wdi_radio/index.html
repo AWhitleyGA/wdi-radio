@@ -8,19 +8,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular-resource.js"></script>
     <script src="app/app.js"></script>
+    <script src="app/home/home.controller.js"></script>
     <script src="app/songs/songs.routes.js"></script>
     <script src="app/songs/song.service.js"></script>
-    <script src="app/albums/album.service.js"></script>
-    <script src="app/artists/artist.service.js"></script>
-    <script src="app/directives/player.directive.js"></script>
     <script src="app/songs/songs.controller.js"></script>
-    <script src="app/home/home.controller.js"></script>
+    <script src="app/artists/artists.routes.js"></script>
+    <script src="app/artists/artist.service.js"></script>
+    <script src="app/artists/artists.controller.js"></script>
+    <script src="app/albums/album.service.js"></script>
+    <script src="app/directives/player.directive.js"></script>
   </head>
-  <body ng-app="wdiRadio" ng-controller="HomeController as vm" ng-style="{'padding-bottom': vm.selectedSong ? '200px' : '0px'}">
+  <body
+    ng-app="wdiRadio"
+    ng-controller="HomeController as vm"
+    ng-style="{'padding-bottom': vm.selectedSong ? '200px' : '0px'}"
+    ng-keydown="vm.pausePlayer()"
+  >
     <nav>
       <h1>WDIRadio</h1>
       <div>
         <a ui-sref="songsIndex">Songs</a>
+        <a ui-sref="artistsIndex">Artists</a>
       </div>
     </nav>
     <main ui-view>

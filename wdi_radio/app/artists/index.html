@@ -1,0 +1,6 @@
+<h2>All Artists</h2>
+<p ng-repeat="artist in vm.artists">
+  <a ui-sref="artistsShow({ id: artist.id })">
+    {{ artist.name }}
+  </a>
+</p>

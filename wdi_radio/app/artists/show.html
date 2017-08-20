@@ -1,0 +1,14 @@
+<h2>{{ vm.artist.name }}</h2>
+<div class="album-gallery">
+  <div class="album-list" ng-repeat="album in vm.artist.albums">
+    <img ng-src="{{ album.image_url.replace('100x100', '300x300') }}" alt="{{ album.name }}">
+    <div>
+      <p ng-repeat="song in album.songs">
+        <button ng-click="vm.selectSong(song)">
+          &#9654;
+        </button>
+        <a ui-sref="songsShow({ id: song.id })">{{ song.name }}</a>
+      </p>
+    </div>
+  </div>
+</div>

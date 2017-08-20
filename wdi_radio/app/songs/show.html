@@ -8,8 +8,7 @@
     </h2>
 
     <p><a ui-sref="songsEdit({ id: vm.song.id })">Edit Song</a></p>
-    <h3>Artist</h3>
-    <p>{{ vm.song.artist.name }}</p>
+    <p><a ui-sref="artistsShow({ id: vm.song.artist.id })">{{ vm.song.artist.name }}</a></p>
   </div>
   <div>
     <h3>{{ vm.song.album.name }}</h3>
