@@ -4,11 +4,10 @@
     .module('wdiRadio')
     .config([
       '$stateProvider',
-      '$urlRouterProvider',
       songsRoutes
     ])
 
-  function songsRoutes ($stateProvider, $urlRouterProvider) {
+  function songsRoutes ($stateProvider) {
     $stateProvider
       .state('songsIndex', {
         url: '/songs',
@@ -34,7 +33,6 @@
         controllerAs: 'vm',
         templateUrl: 'app/songs/edit.html'
       })
-    $urlRouterProvider.otherwise('/songs')
   }
 
 }());
