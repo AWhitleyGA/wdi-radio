@@ -8,9 +8,9 @@
     ])
 
   function Album ($resource) {
-    return $resource('http://localhost:3000/api/albums/:id', {}, {
+    return $resource('/api/albums/:id', {}, {
       update: { method: 'PUT' }
     })
   }
-  
+
 }())

@@ -8,7 +8,7 @@
     ])
 
   function Artist ($resource) {
-    return $resource('http://localhost:3000/api/artists/:id', {}, {
+    return $resource('/api/artists/:id', {}, {
       update: { method: 'PUT' }
     })
   }
