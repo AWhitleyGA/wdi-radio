@@ -6,5 +6,6 @@ Rails.application.routes.draw do
     resources :songs
   end
 
-  
+  match '*path' => 'home#index', via: :get
+
 end
