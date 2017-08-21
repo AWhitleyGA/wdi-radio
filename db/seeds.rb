@@ -10,6 +10,10 @@ Album.destroy_all
 Artist.destroy_all
 
 artists = [
+  'Rage Against the Machine',
+  'Kygo',
+  'Major Lazer',
+  'The Weekend',
   'Tritonal',
   'Galantis',
   'Ellie Goulding',
