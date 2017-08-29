@@ -31,7 +31,6 @@
 
   function ArtistsShow (Artist, Album, $state, $scope) {
     this.artist = Artist.get({ id: $state.params.id }, (artist) => {
-      console.log(artist)
       artist.albums = artist.albums.map((album) => {
         return Album.get({ id: album.id })
       })
