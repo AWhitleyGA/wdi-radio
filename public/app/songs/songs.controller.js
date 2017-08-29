@@ -4,8 +4,11 @@
     .module('wdiRadio')
     .controller('SongsIndex', [
       'Song',
+      'Album',
+      'Artist',
       '$sce',
       '$scope',
+      '$state',
       SongsIndex
     ])
     .controller('SongsShow', [
@@ -16,13 +19,6 @@
       '$scope',
       SongsShow
     ])
-    .controller('SongsNew', [
-      'Song',
-      'Album',
-      'Artist',
-      '$state',
-      SongsNew
-    ])
     .controller('SongsEdit', [
       'Song',
       '$stateParams',
@@ -30,9 +26,45 @@
       SongsEdit
     ])
 
-  function SongsIndex (Song, $sce, $scope) {
+  function SongsIndex (Song, Album, Artist, $sce, $scope, $state) {
     this.songs = Song.query()
     this.selectSong = $scope.$parent.vm.selectSong.bind($scope.$parent.vm)
+
+    this.newSong = new Song()
+    this.hasSearched = false
+
+    this.search = function () {
+      fetch(`https://itunes.apple.com/search?term=${this.searchSong}&media=music&entity=song`, {
+        headers: new Headers({
+          'Accept': 'application/json'
+        })
+      })
+      .then((res) => {
+        res.json().then((res) => {
+          this.hasSearched = true
+          this.songList = res.results
+          $scope.$apply()
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    }
+
+    this.updatePreview = function (trackId) {
+      this.selectedSong = this.songList.find((song) => song.trackId === parseInt(trackId))
+    }
+
+    this.addSong = function () {
+      this.newSong.name = this.selectedSong.trackName
+      this.newSong.preview_url = this.selectedSong.previewUrl
+      this.newSong.itunes_id = this.selectedSong.trackId
+      this.newSong.album_id = this.selectedSong.collectionId
+      this.newSong.artist_id = this.selectedSong.artistId
+      this.newSong.$save((res) => {
+        $state.go('songsShow', { id: res.id })
+      })
+    }
   }
 
   function SongsShow(Song, Album, $stateParams, $sce, $scope) {

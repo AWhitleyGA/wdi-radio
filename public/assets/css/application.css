@@ -111,3 +111,37 @@ nav a:hover {
   flex-wrap: wrap;
   align-items: flex-start;
 }
+
+.add-entity-form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.add-entity-form form {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.add-entity-form input, .add-entity-form select {
+  margin: 5px 10px;
+}
+
+.new-song-preview {
+  margin: 5px 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.new-song-preview img {
+  border-radius: 5px;
+}
+
+.new-song-preview div {
+  margin: 0 10px;
+}

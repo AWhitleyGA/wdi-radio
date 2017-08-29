@@ -1,5 +1,35 @@
 <div class="song-gallery" ng-style="{ 'margin-bottom': vm.selectedSong ? '200px' : '0' }">
-  <h2>All Songs <a ui-sref="songsNew">(+)</a></h2>
+  <h2>All Songs</h2>
+  <button ng-click="showNew = !showNew">
+    {{ showNew ? 'x' : '+' }}
+  </button>
+  <div ng-show="showNew" class="add-entity-form">
+    <div>
+      <form ng-submit="vm.search()">
+        <input type="text" ng-model="vm.searchSong">
+        <input type="submit" value="Search">
+      </form>
+      <form ng-show="vm.hasSearched">
+        <select ng-model="trackId" ng-change="vm.updatePreview(trackId)">
+          <option ng-repeat="song in vm.songList" value="{{ song.trackId }}">
+            {{ song.trackName }} - {{ song.artistName }}
+          </option>
+        </select>
+      </form>
+      <button ng-click="vm.addSong()" ng-show="vm.selectedSong">
+        Add Song
+      </button>
+    </div>
+    <div class="new-song-preview" ng-show="vm.selectedSong">
+      <img ng-src="{{vm.selectedSong.artworkUrl100.replace('100x100', '200x200')}}" alt="{{vm.selectedSong.collectionName}}">
+      <div>
+        <p>{{ vm.selectedSong.trackName }}</p>
+        <p>{{ vm.selectedSong.artistName }}</p>
+        <p>{{ vm.selectedSong.collectionName }}</p>
+        <p>{{ vm.selectedSong.primaryGenreName }}</p>
+      </div>
+    </div>
+  </div>
   <p ng-repeat="song in vm.songs" >
     <button ng-click="vm.selectSong(song)">
       &#9654;
