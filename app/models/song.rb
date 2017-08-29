@@ -2,9 +2,6 @@ class Song < ApplicationRecord
   belongs_to :album
   belongs_to :artist
 
-  # before_create :populate_artist
-  # before_create :populate_album
-
 
   def populate_artist
     artist_data = JSON.parse(HTTParty.get("https://itunes.apple.com/lookup?id=#{self.artist_id}"))["results"][0]
