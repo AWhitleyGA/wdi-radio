@@ -62,6 +62,7 @@
       this.newSong.album_id = this.selectedSong.collectionId
       this.newSong.artist_id = this.selectedSong.artistId
       this.newSong.$save((res) => {
+        $scope.$parent.vm.songs = Song.query()
         $state.go('songsShow', { id: res.id })
       })
     }
